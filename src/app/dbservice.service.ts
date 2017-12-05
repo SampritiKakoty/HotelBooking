@@ -16,10 +16,7 @@ export class DbserviceService {
   
     constructor(private _http: Http) { }
   
-    getUsers() {
-      return this._http.get("/api/users")
-        .map(result => this.result = result.json().data);
-    }
+
 
     getHotels(location,numberOfResult){
 
@@ -44,6 +41,10 @@ export class DbserviceService {
                  .map(hotels => this.hotels = hotels.json().data);
       
           }
+
+    saveCustomerDetails(){
+      
+    }
   
 
 }

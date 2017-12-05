@@ -4,6 +4,12 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 
 // Connect
@@ -35,12 +41,13 @@ router.get('/hotels', (req, res) => {
   
   //  console.log("==============:"+req.query.location);
     connection((db) => {
-        db.collection('hotel')
-            .find({$or:[{address:req.query.location},{location:req.query.location}]})
+        db.collection('hotel')//.find()
+            .find({$or:[{address:req.query.location},{city:req.query.location}]})
             .toArray()
             .then((hotel) => {
                 response.data = hotel;
                 res.json(response);
+
 
            //     console.log(hotel)
             })
@@ -52,7 +59,7 @@ router.get('/hotels', (req, res) => {
 
 router.get('/getHotelDetail', (req, res) => {
     
-     console.log("==============:"+req.query);
+   //  console.log("==============:"+req.query.id);
       connection((db) => {
           db.collection('hotel')
               .find({_id:{$eq:req.query.id}})
@@ -61,11 +68,20 @@ router.get('/getHotelDetail', (req, res) => {
                   response.data = hotel;
                   res.json(response);
   
-                 console.log(hotel)
+             //    console.log(hotel)
               })
               .catch((err) => {
                   sendError(err, res);
               });
+      });
+  });
+
+  router.get('/updateCustomer', urlencodedParser, (req, res) => {
+    
+   //  console.log("==============:"+req.query.id);
+      connection((db) => {
+          db.collection('customer').insert({"customerName":req.body.username})
+ 
       });
   });
 

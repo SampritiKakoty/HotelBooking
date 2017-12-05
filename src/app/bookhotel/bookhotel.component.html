@@ -1,3 +1,57 @@
 <p>
   bookhotel works!
 </p>
+
+<form method="Post" class="form-inline" (ngSubmit)="customerData()"  [formGroup]="customerForm"> 
+  <div >
+    <label for="custname">Customer Name</label>
+    <input type="text" class="form-control" id="custname" formControlName="custname" required>
+  </div>
+
+  <div >
+    <label for="HotelName">Hotel Name</label>
+    <input type="text" class="form-control"  value="{{hotelDetails[0].name}}">
+  </div>
+
+
+  USER ADDRESS::
+
+  <div >
+    <label for="custAddress"> Address</label>
+    <input type="text" class="form-control" id="custAddress" formControlName="custAddress" required>
+  
+  </div>
+
+  <div >
+    <label for="custCity"> City</label>
+    <input type="text" class="form-control" id="custCity" formControlName="custCity" required>
+  
+  </div>
+
+  <div >
+    <label for="custZip"> Zipcode</label>
+    <input type="text" class="form-control" id="custZip" formControlName="custZip" required>
+  
+  </div>
+
+  HOTEL ADDRESS:
+
+  <div >
+    <label for="HotelAddress">Address</label>
+    <input type="text" class="form-control" value="{{hotelDetails[0].address}}">
+  </div>
+
+  <div >
+    <label for="HotelCity">City</label>
+    <input type="text" class="form-control" value="{{hotelDetails[0].city}}">
+  </div>
+
+  <div >
+    <label for="HotelZip">Zip</label>
+    <input type="text" class="form-control"  value="{{hotelDetails[0].zip}}">
+  </div>
+
+
+  <button type="submit" class="btn btn-success">Submit</button>
+
+</form>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {RouterModule,Routes,Router} from '@angular/router';
+import {RouterModule,Routes,Router,ActivatedRoute} from '@angular/router';
 import { DbserviceService } from '../dbservice.service';
 import { FormControl, FormGroup ,Validators} from '@angular/forms';
 
@@ -24,6 +23,7 @@ export class HotelDetailsComponent implements OnInit {
         this.hotelDetails= this._dataService.getHotelDetail(this.id).subscribe(res=>this.hotelDetails=res)
 
         console.log("Show id:::"+this.id)
+        console.log("Show details:::"+this.hotelDetails)
       })
   }
 
