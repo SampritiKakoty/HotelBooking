@@ -1,16 +1,17 @@
-<p>
-  Hotel Result
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="outer-header">
+    <div class="header">
+      UI Case Study - Hotel Booking Application
+    </div>
+  </div>
+    </div>
 
-Change  Search
+<button type="button" class="btn btn-info" [routerLink]="['/search']" >Change  Search</button>
+<div class="row">
 
 
-
-<ul>
-  <li *ngFor="let user of result">{{ user.name }}</li>
-</ul>
-
-<table class="table table-hover">
+<table class="table table-hover table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,13 +22,19 @@ Change  Search
     </tr>
   </thead>
   <tbody>
-      <tr>
-      <td>Mary</td>
-      <td>Moe</td>
-      <td>mary@example.com</td>
-      <td>mary@example.com</td>
-      <td>mary@example.com</td>
+      <tr *ngFor="let hotel of result">
+      <td>{{hotel.name}}</td>
+      <td>{{hotel.address}}</td>
+      <td>{{hotel.city}}</td>
+      <td>{{hotel.zip}}</td>
+       <td><button type="button" class="btn btn-info" [routerLink]="['/hotelDetail',hotel._id]" >View Hotel</button></td>
     </tr>
   
   </tbody>
 </table>
+</div>
+
+<footer>
+  Accenture &copy; 2017
+</footer>
+</div>

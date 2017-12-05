@@ -32,6 +32,18 @@ export class DbserviceService {
            .map(hotels => this.hotels = hotels.json().data);
 
     }
+
+    getHotelDetail(id){
+      
+          console.log("Pass Id"+id);
+          this.params.set('id',id);
+           this.requestOptions.search= this.params;
+      
+                return this._http.get('http://localhost:4000/api/getHotelDetail',
+                 this.requestOptions)
+                 .map(hotels => this.hotels = hotels.json().data);
+      
+          }
   
 
 }

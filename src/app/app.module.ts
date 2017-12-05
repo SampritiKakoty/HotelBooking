@@ -12,6 +12,8 @@ import { SearchComponent } from './search/search.component';
 import { HttpModule } from '@angular/http';
 import { DbserviceService } from './dbservice.service';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
+import { BookhotelComponent } from './bookhotel/bookhotel.component';
 
 
 @NgModule({
@@ -19,16 +21,18 @@ import { SearchResultComponent } from './search-result/search-result.component';
     AppComponent,
     HomeComponent,
     SearchComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    HotelDetailsComponent,
+    BookhotelComponent
   ],
   imports: [
     BrowserModule,HttpModule, ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'home', component : HomeComponent},
       {path: 'search',component: SearchComponent},
-      {path: 'searchResult/:location/:result',component: SearchResultComponent}
-     // {path: 'quiz/:quesNo',component: SearchComponent},
-   //   {path: 'result',component: ResultsComponent},
+      {path: 'searchResult/:location/:result',component: SearchResultComponent},
+      {path: 'hotelDetail/:id',component: HotelDetailsComponent},
+      {path: 'bookHotel/:id',component: BookhotelComponent},
     ])
   ],
   providers: [DbserviceService],

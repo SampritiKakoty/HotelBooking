@@ -33,7 +33,7 @@ let response = {
 // Get users
 router.get('/hotels', (req, res) => {
   
-    console.log("==============:"+req.query.location);
+  //  console.log("==============:"+req.query.location);
     connection((db) => {
         db.collection('hotel')
             .find({$or:[{address:req.query.location},{location:req.query.location}]})
@@ -42,12 +42,31 @@ router.get('/hotels', (req, res) => {
                 response.data = hotel;
                 res.json(response);
 
-                console.log(hotel)
+           //     console.log(hotel)
             })
             .catch((err) => {
                 sendError(err, res);
             });
     });
 });
+
+router.get('/getHotelDetail', (req, res) => {
+    
+     console.log("==============:"+req.query);
+      connection((db) => {
+          db.collection('hotel')
+              .find({_id:{$eq:req.query.id}})
+              .toArray()
+              .then((hotel) => {
+                  response.data = hotel;
+                  res.json(response);
+  
+                 console.log(hotel)
+              })
+              .catch((err) => {
+                  sendError(err, res);
+              });
+      });
+  });
 
 module.exports = router;
