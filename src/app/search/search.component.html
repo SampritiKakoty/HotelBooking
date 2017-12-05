@@ -1,3 +1,18 @@
 <p>
   search works!
 </p>
+
+ <form  (ngSubmit)="doSearch(searchForm.value)"  [formGroup]="searchForm"> 
+      <div >
+        <label for="searchString">Search String</label>
+        <input type="text" class="form-control" id="searchString1" formControlName="searchString1" required>
+      </div>
+ 
+      <div >
+        <label for="maxResult">Max Result</label>
+        <input type="text" class="form-control" id="maxResult">
+      </div>
+ 
+      <button type="submit" class="btn btn-success">Submit</button>
+ 
+    </form>

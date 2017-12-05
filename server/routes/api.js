@@ -1,13 +1,16 @@
 const express = require('express');
+app = module.exports = express();
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
+
+
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/exampleDB', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017/HotelReservation', (err, db) => {
         if (err) return console.log(err);
-        console.log("Sucess");
+       // console.log("Sucess");
 
         closure(db);
     });
@@ -28,15 +31,18 @@ let response = {
 };
 
 // Get users
-router.get('/users', (req, res) => {
+router.get('/hotels', (req, res) => {
+  
+    console.log("==============:"+req.query.location);
     connection((db) => {
-        db.collection('users')
-            .find()
+        db.collection('hotel')
+            .find({$or:[{address:req.query.location},{location:req.query.location}]})
             .toArray()
-            .then((users) => {
-                response.data = users;
+            .then((hotel) => {
+                response.data = hotel;
                 res.json(response);
-                console.log(users)
+
+                console.log(hotel)
             })
             .catch((err) => {
                 sendError(err, res);
