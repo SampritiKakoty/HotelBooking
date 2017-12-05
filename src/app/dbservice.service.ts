@@ -42,8 +42,14 @@ export class DbserviceService {
       
           }
 
-    saveCustomerDetails(){
-      
+    saveCustomerDetails(name,address,pin,city){
+      console.log("mndn:::::"+name);
+
+      return this._http.post('http://localhost:4000/api/updateCustomer',
+      {name,address,pin,city})
+      .map(hotels => this.hotels = hotels.json().data);
+
+
     }
   
 

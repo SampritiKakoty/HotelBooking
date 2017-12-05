@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {RouterModule,Routes,Router,ActivatedRoute} from '@angular/router';
 import { DbserviceService } from '../dbservice.service';
-import { FormControl, FormGroup ,Validators} from '@angular/forms';
+import { FormControl, FormGroup ,Validators,AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-bookhotel',
@@ -14,6 +14,9 @@ export class BookhotelComponent implements OnInit {
  
   id: any;
   hotelDetails:any;
+  custname:AbstractControl;
+  numb:AbstractControl;
+  customerSaved:any
 
 
   customerForm = new FormGroup ({
@@ -34,15 +37,27 @@ export class BookhotelComponent implements OnInit {
         this.id=params['id'];
         this.hotelDetails= this._dataService.getHotelDetail(this.id).subscribe(res=>this.hotelDetails=res)
 
-        console.log("Show id:::"+this.id)
-        console.log("Show details:::"+this.hotelDetails)
+       // console.log("Show id:::"+this.id)
+        //console.log("Show details:::"+this.hotelDetails)
+
+       
       })
   }
 
   customerData(){
 
+    this._dataService.saveCustomerDetails(
+      this.customerForm.get('custname').value,
+       this.customerForm.get('custAddress').value,
+        this.customerForm.get('custCity').value, 
+        this.customerForm.get('custZip').value).subscribe(res=>this.customerSaved=res)
+        
+        ;
+
+  
+
     
-   console.log("Sumit data"+this.customerForm.controls['custname'].value);
+   console.log("Sumit data"+this.customerForm.get('custname').value);
 
   }
 

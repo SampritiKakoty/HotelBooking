@@ -76,12 +76,20 @@ router.get('/getHotelDetail', (req, res) => {
       });
   });
 
-  router.get('/updateCustomer', urlencodedParser, (req, res) => {
+  router.post('/updateCustomer', urlencodedParser, (req, res) => {
     
-   //  console.log("==============:"+req.query.id);
+//  console.log("==============:"+req.body.custname);
+    
       connection((db) => {
-          db.collection('customer').insert({"customerName":req.body.username})
- 
+       // console.log("==============:"+req.body.name);
+          db.collection('customer').insert({name:req.body.name,address:req.body.address,zipcode:req.body.pin,city:req.body.city})
+          .then((customer) =>{
+            console.log("=customer=======:"+customer);
+            response.data = customer;
+            res.json(response);;
+          }
+        )
+        
       });
   });
 
