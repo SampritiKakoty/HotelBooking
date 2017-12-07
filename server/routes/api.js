@@ -82,11 +82,11 @@ router.get('/getHotelDetail', (req, res) => {
     
       connection((db) => {
        // console.log("==============:"+req.body.name);
-          db.collection('customer').insert({name:req.body.name,address:req.body.address,zipcode:req.body.pin,city:req.body.city})
+          db.collection('customer').insert({name:req.body.name,address:req.body.address,zipcode:req.body.pin,city:req.body.city,hotelId:req.body.hotelId})
           .then((customer) =>{
             console.log("=customer=======:"+customer);
             response.data = customer;
-            res.json(response);;
+            res.json(response);
           }
         )
         

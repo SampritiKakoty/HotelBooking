@@ -6,20 +6,38 @@
     </div>
   </div>
     </div>
- <form  (ngSubmit)="doSearch(searchForm.value)"  [formGroup]="searchForm"> 
-      <div >
-        <label for="searchString">Search String</label>
-        <input type="text" class="form-control" id="searchString1" formControlName="searchString1" required>
-      </div>
- 
-      <div >
-        <label for="maxResult">Max Result</label>
-        <input type="text" class="form-control" id="maxResult">
-      </div>
- 
-      <button type="submit" class="btn btn-success">Submit</button>
- 
-    </form>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/assets/images/main.jpg" class="main-img">
+          </div>
+          <div class="col-md-7" id="mrgn">
+          <form  (ngSubmit)="doSearch(searchForm.value)"  [formGroup]="searchForm"> 
+              <div >
+                <label for="searchString">Search String</label>
+                <input type="text" class="form-control" id="searchString1" formControlName="searchString1" required>
+              </div>
+         
+              <div >
+                <label for="maxResult">Max Result</label>
+                <select  [formControl]='valueSelected'>
+                    <option *ngFor="let num of dropDownVal" [value]="num">{{num}}</option>
+                  </select>
+              </div>
+         
+              <button type="submit" class="btn btn-success">Submit</button>
+         
+            </form>
+          </div>
+
+
+    </div>
+    
+
+
+
+
+
 
     <footer>
       Accenture &copy; 2017

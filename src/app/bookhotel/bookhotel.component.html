@@ -2,6 +2,19 @@
   bookhotel works!
 </p>
 
+
+
+
+
+
+<div *ngIf=isCustomerSaved>
+  Customer Is Saved
+</div>
+
+
+
+
+
 <form method="Post" class="form-inline" (ngSubmit)="customerData()"  [formGroup]="customerForm"> 
   <div >
     <label for="custname">Customer Name</label>

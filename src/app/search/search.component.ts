@@ -14,19 +14,15 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
- 
-
-  // public searchForm = this.fb.group({
-   // searchString: ["", Validators.required]
-   // password: ["", Validators.required]
-  //});
-
-   //searchForm: FormGroup;
-
-  
+  dropDownVal=[1,5,10];
+//
 
    searchForm = new FormGroup ({
-    searchString1: new FormControl()
+    searchString1: new FormControl(),
+    valueSelected:new FormControl()
+
+
+
   });
 
   constructor(private router: Router) { 
@@ -44,10 +40,10 @@ export class SearchComponent implements OnInit {
   doSearch(value){
 
     
-   //this._dataService.getHotels( value.searchString1,5);
+  
    this.router.navigate(['searchResult',value.searchString1,5]);
     //this._dataService.getHotels(value.searchString1,5).subscribe(res=>this.result=res)
-
+    console.log("hdjhkjfhklf"+JSON.stringify(value));
    //this.router.navigate(['./home']);
   }
 

@@ -17,6 +17,7 @@ export class BookhotelComponent implements OnInit {
   custname:AbstractControl;
   numb:AbstractControl;
   customerSaved:any
+  isCustomerSaved:boolean=false;
 
 
   customerForm = new FormGroup ({
@@ -36,7 +37,7 @@ export class BookhotelComponent implements OnInit {
 
         this.id=params['id'];
         this.hotelDetails= this._dataService.getHotelDetail(this.id).subscribe(res=>this.hotelDetails=res)
-
+        
        // console.log("Show id:::"+this.id)
         //console.log("Show details:::"+this.hotelDetails)
 
@@ -47,17 +48,26 @@ export class BookhotelComponent implements OnInit {
   customerData(){
 
     this._dataService.saveCustomerDetails(
+      this.id,
       this.customerForm.get('custname').value,
        this.customerForm.get('custAddress').value,
         this.customerForm.get('custCity').value, 
-        this.customerForm.get('custZip').value).subscribe(res=>this.customerSaved=res)
+        this.customerForm.get('custZip').value
+      ).subscribe(res=>this.customerSaved=res)
         
         ;
 
-  
+        console.log("Hello.......");
 
+        //console.log("Hello...1...."+this.customerSaved);
+       
+  
+  if(this.customerSaved !=null ){
+
+        
+    this.isCustomerSaved=true;}
     
-   console.log("Sumit data"+this.customerForm.get('custname').value);
+  console.log("Report::::"+this.isCustomerSaved);
 
   }
 
